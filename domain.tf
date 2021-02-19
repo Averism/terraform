@@ -4,5 +4,5 @@ provider "aws" {
     
 module "domain" {
     source = "./modules/hostedzone"
-    domain = "averism.com"
+    domain = local.domain
 }
