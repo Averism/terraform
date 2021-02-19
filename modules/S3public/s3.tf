@@ -1,9 +1,14 @@
-variable "bucketname" {
+variable "domain" {
     type = string
 }
 
+locals {
+    bucketname = "static.${var.domain}"
+    origin_id = "S3-${local.bucketname}"
+}
+
 resource "aws_s3_bucket" "bucket" {
-  bucket = var.bucketname
+  bucket = local.bucketname
   acl    = "public-read"
     website {
         index_document = "index.html"
