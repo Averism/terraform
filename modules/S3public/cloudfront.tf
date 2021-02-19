@@ -1,3 +1,8 @@
+module acm {
+    source = "../acm/us-east-1"
+    domain = var.domain
+}
+
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name = aws_s3_bucket.bucket.bucket_domain_name
@@ -37,7 +42,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
   
   viewer_certificate {
-    acm_certificate_arn            = aws_acm_certificate.cert.arn
+    acm_certificate_arn            = module.acm.arn
     cloudfront_default_certificate = false 
     minimum_protocol_version       = "TLSv1.1_2016"
     ssl_support_method             = "sni-only"
