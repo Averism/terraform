@@ -49,3 +49,16 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     ssl_support_method             = "sni-only"
   }
 }
+
+data "aws_route53_zone" "zone" {
+  name         = var.domain
+  private_zone = false
+}
+
+resource "aws_route53_record" "cloudfront_cname" {
+  zone_id = data.aws_route53_zone.zone.zone_id
+  name    = "${var.subdomain}.${var.domain}"
+  type    = "CNAME"
+  ttl     = "1800"
+  records = [aws_cloudfront_distribution.s3_distribution.domain_name]
+}
