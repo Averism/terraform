@@ -1,6 +1,7 @@
 module acm {
     source = "../acm/us-east-1"
     domain = var.domain
+    subdomain = var.subdomain
 }
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
@@ -13,7 +14,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   is_ipv6_enabled     = true
   default_root_object = "index.html"
 
-  aliases = ["www.${var.domain}"]
+  aliases = ["${var.subdomain}.${var.domain}"]
 
   
   restrictions {

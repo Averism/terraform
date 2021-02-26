@@ -2,16 +2,20 @@ variable "domain" {
     type = string
 }
 
+variable "subdomain" {
+    type = string
+}
+
 provider "aws" {
     region = "us-east-1"
 }
 
 resource "aws_acm_certificate" "cert" {
-  domain_name       = "www.${var.domain}"
+  domain_name       = "${var.subdomain}.${var.domain}"
   validation_method = "DNS"
 
   tags = {
-    Name = "www"
+    Name = var.subdomain
   }
 
   lifecycle {

@@ -2,8 +2,17 @@ variable "domain" {
     type = string
 }
 
+variable "subdomain" {
+    type = string
+}
+
+variable "alias" {
+    type = string
+    default = null
+}
+
 locals {
-    bucketname = "static.${var.domain}"
+    bucketname = "${var.alias==null?var.subdomain:var.alias}.${var.domain}"
     origin_id = "S3-${local.bucketname}"
 }
 
