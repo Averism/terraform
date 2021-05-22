@@ -10,3 +10,9 @@ module "media" {
     domain = local.domain
     subdomain = "media"
 }
+
+module "devs3" {
+    source = "./modules/S3public"
+    domain = local.domain
+    subdomain = "devstaticrepo"
+}
