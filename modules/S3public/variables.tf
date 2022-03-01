@@ -10,3 +10,8 @@ variable "alias" {
     type = string
     default = null
 }
+
+variable "custom404" {
+    type = string
+    default = null
+}

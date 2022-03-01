@@ -16,6 +16,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
 
   aliases = ["${var.subdomain}.${var.domain}"]
 
+  custom_error_response {
+    error_code = 404
+    response_code = 404
+    response_page_path = var.custom404
+  }
   
   restrictions {
     geo_restriction {
