@@ -6,7 +6,7 @@ module frontend_cd {
 data "aws_iam_policy_document" "allow_access_from_codebuild" {
   statement {
     principals {
-        type = "arn"
+        type = "AWS"
         identifiers = [module.frontend_cd.role_arn]
     }
 
