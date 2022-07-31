@@ -23,11 +23,6 @@ resource "aws_s3_bucket" "averism_codebuild_cache" {
 POLICY
 }
 
-resource "aws_s3_bucket_acl" "averism_codebuild_cache_acl" {
-  bucket = aws_s3_bucket.averism_codebuild_cache.id
-  acl    = "private"
-}
-
 resource "aws_iam_role" "averism_codebuild_role" {
   name = "averism_codebuild_role"
 
