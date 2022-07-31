@@ -4,25 +4,6 @@ variable s3_bucket_location {
 
 resource "aws_s3_bucket" "averism_codebuild_cache" {
   bucket = "averism-codebuil-cache"
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Principal": {
-        "Service": "codebuild.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Action": [
-        "s3:*"
-      ],
-      "Resource": [
-        "*"
-      ]
-    }
-  ]
-}
-POLICY
 }
 
 resource "aws_iam_role" "averism_codebuild_role" {
