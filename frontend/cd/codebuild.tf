@@ -9,6 +9,9 @@ resource "aws_s3_bucket" "averism_codebuild_cache" {
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Principal": {
+        "Service": "codebuild.amazonaws.com"
+      },
       "Effect": "Allow",
       "Action": [
         "s3:*"
@@ -65,8 +68,7 @@ resource "aws_iam_role_policy" "averism_codebuild_policy" {
         "s3:*"
       ],
       "Resource": [
-        "*",
-        "*/*"
+        "*"
       ]
     }
   ]
