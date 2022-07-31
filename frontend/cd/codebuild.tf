@@ -3,7 +3,7 @@ variable s3_bucket_location {
 }
 
 resource "aws_s3_bucket" "averism_codebuild_cache" {
-  bucket = "averism_codebuild_cache"
+  bucket = "averism-codebuil-cache"
   policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -14,8 +14,7 @@ resource "aws_s3_bucket" "averism_codebuild_cache" {
         "s3:*"
       ],
       "Resource": [
-        "*",
-        "*/*"
+        "*"
       ]
     }
   ]
