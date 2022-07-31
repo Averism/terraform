@@ -4,6 +4,7 @@ variable s3_bucket_location {
 
 resource "aws_s3_bucket" "averism_codebuild_cache" {
   bucket = "averism_codebuild_cache"
+  policy = aws_iam_role_policy.averism_codebuild_policy.json
 }
 
 resource "aws_s3_bucket_acl" "averism_codebuild_cache_acl" {
@@ -120,4 +121,8 @@ resource "aws_codebuild_project" "averism_codebuild_frontend" {
     ManagedBy = "Terraform"
     Service = "Frontend"
   }
+}
+
+output "role_arn" {
+  value = aws_iam_role.averism_codebuild_role.arn
 }

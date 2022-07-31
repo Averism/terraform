@@ -15,3 +15,8 @@ variable "custom404" {
     type = string
     default = null
 }
+
+variable "policy" {
+    type = string
+    default = null
+}

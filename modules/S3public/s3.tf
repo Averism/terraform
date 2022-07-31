@@ -23,3 +23,11 @@ resource "aws_s3_bucket" "bucket" {
       max_age_seconds = 0
     }
 }
+
+output "bucketname" {
+  value = aws_s3_bucket.bucket.bucket
+}
+
+output "bucketarn" {
+  value = aws_s3_bucket.bucket.arn
+}
