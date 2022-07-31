@@ -4,7 +4,23 @@ variable s3_bucket_location {
 
 resource "aws_s3_bucket" "averism_codebuild_cache" {
   bucket = "averism_codebuild_cache"
-  policy = aws_iam_role_policy.averism_codebuild_policy.json
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:*"
+      ],
+      "Resource": [
+        "*",
+        "*/*"
+      ]
+    }
+  ]
+}
+POLICY
 }
 
 resource "aws_s3_bucket_acl" "averism_codebuild_cache_acl" {
