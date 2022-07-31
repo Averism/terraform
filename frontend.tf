@@ -7,7 +7,7 @@ data "aws_iam_policy_document" "allow_access_from_codebuild" {
   statement {
     principals {
         type = "arn"
-        identifiers = module.frontend_cd.outputs.role_arn
+        identifiers = module.frontend_cd.role_arn
     }
 
     actions = [
@@ -15,13 +15,13 @@ data "aws_iam_policy_document" "allow_access_from_codebuild" {
     ]
 
     resources = [
-      module.static.outputs.bucketarn,
-      "${module.static.outputs.bucketarn}/*",
+      module.static.bucketarn,
+      "${module.static.bucketarn}/*",
     ]
   }
 }
 
 resource "aws_s3_bucket_policy" "s3_policy" {
-  bucket = module.static.outputs.bucketname
+  bucket = module.static.bucketname
   policy = data.aws_iam_policy_document.allow_access_from_codebuild.json
 }
