@@ -7,7 +7,7 @@ data "aws_iam_policy_document" "allow_access_from_codebuild" {
   statement {
     principals {
         type = "arn"
-        identifiers = module.frontend_cd.role_arn
+        identifiers = [module.frontend_cd.role_arn]
     }
 
     actions = [
